@@ -1,0 +1,14 @@
+@startuml
+actor Operator
+participant "MES UI" as UI
+participant "MES API" as API
+participant "MES DB" as DB
+participant "Cache" as Cache
+
+Operator -> UI : Изменить статус заказа
+UI -> API : PATCH /order/{id}
+API -> DB : UPDATE order status
+DB --> API : OK
+
+API -> Cache : UPDATE / INVALIDATE order
+@enduml

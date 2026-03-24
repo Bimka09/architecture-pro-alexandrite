@@ -1,0 +1,13 @@
+@startuml
+actor Operator
+participant "MES UI" as UI
+participant "MES API" as API
+participant "Cache" as Cache
+
+Operator -> UI : Открыть список заказов
+UI -> API : GET /orders
+API -> Cache : GET orders_list
+Cache --> API : orders list
+API --> UI : orders list
+UI --> Operator : Отобразить список
+@enduml
